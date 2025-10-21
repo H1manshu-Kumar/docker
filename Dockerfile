@@ -14,7 +14,7 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-# expose port 80
+# expose port - 80
 
 EXPOSE 80
 
