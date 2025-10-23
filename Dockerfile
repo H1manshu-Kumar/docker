@@ -1,24 +1,5 @@
-# Base image (OS)
+#Base Image; Syntax = FROM <ImageName>:<TagName>
+FROM openjdk:17-jdk-apline
 
-FROM python:3.9-slim
-
-# Working directory
-
+#Working directory for the ap
 WORKDIR /app
-
-# Copy src code to container
-
-COPY . .
-
-# Run the build commands
-
-RUN pip install -r requirements.txt
-
-# expose port - 80
-
-EXPOSE 80
-
-# serve the app / run the app (keep it running)
-
-CMD ["python","run.py"]
-
