@@ -1,5 +1,5 @@
 #Base Image; Syntax = FROM <ImageName>:<TagName>
-FROM openjdk:17-jdk-apline
+FROM openjdk:17-jdk-alpine
 
 #Working directory for the app
 WORKDIR /app 
