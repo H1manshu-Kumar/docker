@@ -14,3 +14,10 @@ COPY /home/superuser/Work/DevOps_Training_TWS/docker_fundamental/java-quotes-app
 RUN javac Main.java
 
 RUN java Main
+
+#Expose the port
+EXPOSE 8000
+
+# Serve the app / Keep it running
+CMD ["java","Main"]
+
