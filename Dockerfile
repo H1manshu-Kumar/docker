@@ -10,10 +10,7 @@ COPY /home/superuser/Work/DevOps_Training_TWS/docker_fundamental/java-quotes-app
 COPY /home/superuser/Work/DevOps_Training_TWS/docker_fundamental/java-quotes-app/quotes.txt /app/quotes.txt
 
 # Run the command to install libs or to compile code
-
 RUN javac Main.java
-
-RUN java Main
 
 #Expose the port
 EXPOSE 8000
