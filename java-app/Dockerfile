@@ -5,9 +5,9 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app 
 
 #Code for app
-COPY /home/superuser/Work/DevOps_Training_TWS/Git_repos/docker/java-app/src/Main.java /app/Main.java
+COPY /src/Main.java /app/Main.java
 
-COPY /home/superuser/Work/DevOps_Training_TWS/Git_repos/docker/java-app/quotes.txt /app/quotes.txt
+COPY /quotes.txt /app/quotes.txt
 
 # Run the command to install libs or to compile code
 RUN javac Main.java
