@@ -1,68 +1,102 @@
-# Java Motivational Quotes App
+# ☕ Dockerized Java Application
 
-This project is a simple Java-based HTTP server that serves random motivational quotes via a REST API. The quotes are externalized to a `quotes.txt` file for easy customization.
+This project demonstrates how to **containerize a simple Java application** using Docker.  
+It’s part of my ongoing **DevOps learning journey**, where I practice Docker with different types of applications.
 
-## Features
-- Serves random motivational quotes in JSON format.
-- Uses an external `quotes.txt` file for configurable quotes.
-- Lightweight HTTP server using `com.sun.net.httpserver.HttpServer`.
-- Dockerized for easy deployment.
+---
 
-## Requirements
-- Java 17+
-- Maven (if building from source)
-- Docker (optional, for containerized deployment)
+## 📁 Project Structure
 
-## Setup and Usage
-
-### Running Locally
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/LondheShubham153/java-quotes-app.git
-   cd java-quotes-app
-   ```
-2. Ensure `quotes.txt` exists in the project directory and contains quotes (one per line).
-3. Compile and run the application:
-   ```sh
-   javac src/Main.java -d out
-   java -cp out Main
-   ```
-4. The server will start on `http://localhost:8000/`.
-5. Test the API using:
-   ```sh
-   curl http://localhost:8000/
-   ```
-
-### Running with Docker
-1. Build the Docker image:
-   ```sh
-   docker build -t motivational-quotes-api .
-   ```
-2. Run the container:
-   ```sh
-   docker run -p 8000:8000 motivational-quotes-api
-   ```
-3. Access the API at `http://localhost:8000/`.
-
-## File Structure
 ```
-project-root/
-│── src/
-│   └── Main.java
-│── quotes.txt
-│── Dockerfile
-│── README.md
-│── target/
-│   └── myapp.jar (if using Maven build)
+java-app/
+├── Dockerfile
+├── app/                # Contains Java source code / compiled JAR
+└── README.md
 ```
 
-## Customizing Quotes
-To customize the quotes, edit `quotes.txt` and restart the application. Each quote should be on a new line.
+---
 
-## License
-This project is licensed under the MIT License.
+## 🐳 Dockerfile Overview
 
-## Author
-[TrainWithShubham](https://github.com/LondheShubham153)
+The Dockerfile defines how to package the Java application into a container.
 
+```dockerfile
+# Base image
+FROM openjdk:17-jdk-alpine
 
+# Working directory inside container
+WORKDIR /app
+
+# Copy application files into container
+COPY src/Main.java /app/Main.java
+```
+
+### 🔍 Explanation
+- **Base Image** → Uses lightweight `openjdk:17-jdk-alpine`  
+- **WORKDIR** → Sets `/app` as the working directory  
+- **COPY** → Copies your local Java app files into the container  
+
+---
+
+## ⚙️ Build the Image
+
+Run this command from the project root:
+
+```bash
+docker build -t java-app .
+```
+
+✅ This creates a Docker image named `java-app`.
+
+---
+
+## 🚀 Run the Container
+
+```bash
+docker run -d -p 8000:8000 --name my-java-app java-app:latest
+```
+
+### To verify it’s running:
+```bash
+docker ps
+```
+
+---
+
+## 📦 Access Logs or Output
+
+If your Java application prints output to console:
+```bash
+docker logs my-java-app
+```
+
+---
+
+## 🧹 Stop and Remove Container
+
+```bash
+docker stop my-java-app
+docker rm my-java-app
+```
+
+---
+
+## 💡 Learning Focus
+
+- Understanding how Docker layers work  
+- Writing a simple Dockerfile for Java  
+- Building and running containers locally  
+- Preparing base for multi-stage builds (coming next)  
+
+---
+
+## 🧭 Next Step (Planned)
+
+Next, I’ll extend this by:
+- Creating a **multi-stage Docker build** for optimized Java images  
+- Adding **docker-compose** for multi-container setup (e.g., Java + DB)
+
+---
+
+**Author:** [Himanshu Kumar](https://github.com/H1manshu-Kumar)  
+**Repository:** [Docker Learning Playground](https://github.com/H1manshu-Kumar/docker)
