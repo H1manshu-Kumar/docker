@@ -5,10 +5,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 #Copy code from host machine to container
-COPY /app.py
-COPY /requirements.txt
-COPY /templates
-COPY /vens
+COPY . .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -17,5 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5000
 
 #Run the app
-CMD ["python","app/app.py"]
+CMD ["python","app.py"]
 
