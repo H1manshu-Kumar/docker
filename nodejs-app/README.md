@@ -1,45 +1,118 @@
-# Weather App
+# 🚀 Dockerized Node.js Application
 
-A simple Node.js weather application with a beautiful blue gradient UI for Docker practice.
+This project demonstrates how to **containerize a Node.js Express application** using Docker.  
+It is part of my ongoing **DevOps learning journey**, where I practice containerizing different types of applications.
 
-## Features
+---
 
-- Clean, modern interface with blue/purple gradients
-- Search weather by city name
-- Displays temperature, description, humidity, and wind speed
-- Responsive design
-- Mock weather data (no API key required)
+## 📁 Project Structure
 
-## Installation
-
-```bash
-cd weather-app
-npm install
+```
+nodejs-app/
+├── Dockerfile
+├── app/              # Node.js source code (Express app)
+└── README.md
 ```
 
-## Usage
+---
 
-```bash
-npm start
+## 🐳 Dockerfile Overview
+
+```dockerfile
+# Use official lightweight Node image
+FROM node:18-alpine
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy package.json and install deps
+COPY package*.json ./
+RUN npm install
+
+# Copy application code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Run app
+CMD ["node", "app/app.js"]
 ```
 
-Visit `http://localhost:3000` in your browser.
+### 🔍 Explanation
+- **Base Image** → Uses `node:18-alpine` for a lightweight container
+- **WORKDIR** → App runs inside `/app`
+- **COPY + npm install** → Installs dependencies before copying full source for caching efficiency
+- **EXPOSE 3000** → Makes the container accessible on port 3000
+- **CMD** → Starts the Node.js server
 
-## Docker Practice
+---
 
-This app is designed for learning Docker. Create your own `Dockerfile` and practice:
+## ⚙️ Build the Docker Image
 
-- Building Docker images
-- Running containers
-- Port mapping
-- Container management
+```bash
+docker build -t nodejs-app .
+```
 
-## Tech Stack
+✅ Creates a Docker image named `nodejs-app`
 
-- **Backend:** Node.js, Express
-- **Frontend:** HTML, CSS, JavaScript
-- **Dependencies:** Express, Axios
+---
 
-## Author
+## 🚀 Run the Container
 
-Created with ❤️ by [H1manshu-Kumar](https://github.com/H1manshu-Kumar)
+```bash
+docker run -d -p 3000:3000 --name my-node-app nodejs-app
+```
+
+✅ Maps container port 3000 → localhost:3000
+
+---
+
+## 🌐 Access the Application
+
+Open your browser and visit:
+
+```
+http://localhost:3000
+```
+
+If the Express app returns a response, the container is working ✅
+
+---
+
+## 📦 Logs & Debugging
+
+```bash
+docker logs my-node-app
+```
+
+---
+
+## 🧹 Stop & Remove Container
+
+```bash
+docker stop my-node-app
+docker rm my-node-app
+```
+
+---
+
+## 💡 Learning Focus
+
+- Containerizing Node.js apps with Docker
+- Installing dependencies inside containers
+- Exposing ports for web applications
+- Extending multi-language Docker repo
+
+---
+
+## 🧭 Next Step (Planned)
+
+- Add `docker-compose` for Node.js + Database
+- Push image to Docker Hub
+- Deploy to Kubernetes (Minikube)
+
+---
+
+**Author:** Himanshu Kumar  
+**Repository:** https://github.com/H1manshu-Kumar/docker
