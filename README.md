@@ -76,7 +76,6 @@ Navigate inside and explore application folders.
 ## 👤 Author
 
 **Himanshu Kumar**  
-DevOps | QA Engineer transitioning to DevOps  
 
 🔗 Connect with me:  
 GitHub: https://github.com/H1manshu-Kumar  
