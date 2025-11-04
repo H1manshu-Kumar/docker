@@ -10,7 +10,7 @@ It is part of my ongoing **DevOps learning journey**, where I practice container
 ```
 nodejs-app/
 ├── Dockerfile
-├── app/              # Node.js source code (Express app)
+├── weather-app/              # Node.js source code (Express app)
 └── README.md
 ```
 
@@ -19,29 +19,31 @@ nodejs-app/
 ## 🐳 Dockerfile Overview
 
 ```dockerfile
-# Use official lightweight Node image
-FROM node:18-alpine
+#Base Image
+FROM node:20-alpine
 
-# Set working directory inside container
-WORKDIR /app
+#Set Working Dir
+WORKDIR /app/weather-app
 
-# Copy package.json and install deps
-COPY package*.json ./
+#Copy packages file 
+COPY /weather-app/package*.json ./
+
+#Install dependency
 RUN npm install
 
-# Copy application code
-COPY . .
+# Copy source code
+COPY weather-app/ .
 
-# Expose port
+#EXPOSE 
 EXPOSE 3000
 
-# Run app
-CMD ["node", "app/app.js"]
+# Start the application
+CMD ["node", "app.js"]
 ```
 
 ### 🔍 Explanation
-- **Base Image** → Uses `node:18-alpine` for a lightweight container
-- **WORKDIR** → App runs inside `/app`
+- **Base Image** → Uses `node:20-alpine` for a lightweight container
+- **WORKDIR** → App runs inside `/app/weather-app`
 - **COPY + npm install** → Installs dependencies before copying full source for caching efficiency
 - **EXPOSE 3000** → Makes the container accessible on port 3000
 - **CMD** → Starts the Node.js server
@@ -77,6 +79,21 @@ http://localhost:3000
 ```
 
 If the Express app returns a response, the container is working ✅
+
+---
+
+## 📸 Screenshot – Weather App Running in Docker
+
+Below is a screenshot of the Weather App running successfully on **port 3000**:
+
+<img width="1270" height="752" alt="weather-app" src="https://github.com/user-attachments/assets/006abf90-026f-4983-9fc3-8796e780bd71" />
+
+
+✅ This confirms that:
+- Docker image built successfully  
+- Container started without errors  
+- Port mapping (3000:3000) is working  
+- Application is accessible in browser  
 
 ---
 
