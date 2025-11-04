@@ -1,4 +1,4 @@
-# 🚀 Docker Learning Lab
+# 🚀 Docker Learning Lab 🐳
 
 Welcome to my **Docker Learning Lab**!  
 As part of my learning journey, I am containerizing real-world applications to build strong hands‑on skills and showcase my progress.
@@ -18,30 +18,29 @@ This repository contains step‑by‑step Dockerized projects and practical exam
 
 ## 📂 Repository Structure
 
-| Project        | Description                          | Stack  |
-|----------------|--------------------------------------|--------|
-| `java-app`     | Dockerized Java Application          | Java + Docker |
-| `python-app`   | Dockerized Python Application        | Python + Docker |
-| (More Coming..) | Node.js, Golang, React, DB, NGINX   | 🚧 Roadmap |
+| Folder | Description | Tech |
+|--------|------------|------|
+| [`java-app`](./java-app) | Dockerized Java Application | Java · OpenJDK |
+| [`python-app`](./python-app) | Dockerized Flask Application | Python · Flask |
+| [`nodejs-app`](./nodejs-app) | Dockerized Node.js Weather App | Node.js · Express |
+| _More coming soon_ | Docker Compose, NGINX, DB, Kubernetes | 🚧 |
 
 ---
 
-## 🐳 Docker Commands Used (Proof of Work)
+---
 
-### ✅ Building Image
+## 🛠 Common Commands Used
+
 ```bash
-docker build -t python-app:latest .
+docker build -t app-name .
+docker run -d -p host:container app-name
+docker ps -a
+docker logs container-name
+docker stop container-name
+docker rm container-name
 ```
 
-### ✅ Running Container
-```bash
-docker run -p 5000:5000 python-app:latest
-```
-
-### ✅ Listing Running Containers
-```bash
-docker ps
-```
+---
 
 ## 🎯 Goals
 
