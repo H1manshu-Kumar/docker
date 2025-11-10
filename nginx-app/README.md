@@ -8,13 +8,12 @@ It is part of my ongoing **DevOps learning journey**, where I containerize diffe
 ## 📁 Project Structure
 
 ```
-tic-tac-toe-nginx/
 ├── Dockerfile
-├── index.html
-├── styles.css
-├── script.js
-├── screenshots/
-└── README.md
+├── README.md
+└── tic-tac-toe-app
+    ├── index.html
+    ├── script.js
+    └── style.css
 ```
 
 ---
@@ -26,7 +25,7 @@ tic-tac-toe-nginx/
 FROM nginx:alpine
 
 # Copy static game files to NGINX web directory
-COPY . /usr/share/nginx/html
+COPY tic-tac-toe-app/ /usr/share/nginx/html
 
 # Expose default NGINX port
 EXPOSE 80
@@ -52,28 +51,20 @@ docker build -t tic-tac-toe .
 ## 🚀 Run the Container
 
 ```bash
-docker run -d -p 8080:80 --name tic-tac-toe-container tic-tac-toe
+docker run -d -p 8000:80 --name tic-tac-toe-container tic-tac-toe
 ```
 
 ✅ The game is now live at:
 
 ```
-http://localhost:8080
+http://localhost:8000
 ```
 
 ---
 
 ## 📸 Screenshot
 
-Place a screenshot of the game UI here:
-
-```
-./screenshots/game-ui.png
-```
-
-Example usage in README:
-
-![Tic-Tac-Toe Running](./screenshots/game-ui.png)
+<img width="838" height="750" alt="tic-tac-toe-game" src="https://github.com/user-attachments/assets/24d0d87a-ec12-4aa8-83c2-af79621af54b" />
 
 ✅ Confirms successful container execution
 
