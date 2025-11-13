@@ -1,9 +1,8 @@
-# 🚀 Docker Learning Lab 🐳
+# 🐳 Docker Learning Playground
 
-Welcome to my **Docker Learning Lab**!  
-As part of my learning journey, I am containerizing real-world applications to build strong hands‑on skills and showcase my progress.
+Welcome to my **Docker Learning Repository** — a hands-on journey exploring containerization with real-world projects. This repo documents my practical learning and experiments with **Docker**.
 
-This repository contains step‑by‑step Dockerized projects and practical examples to help learners and demonstrate skills to learners and the DevOps community.
+Perfect for learners 👨‍💻 and a portfolio-ready showcase for world 🚀.
 
 ---
 
@@ -19,17 +18,27 @@ This repository contains step‑by‑step Dockerized projects and practical exam
 ## 📂 Repository Structure
 
 | Folder | Description | Tech |
-|--------|------------|------|
+|--------|--------------|------|
 | [`java-app`](./java-app) | Dockerized Java Application | Java · OpenJDK |
-| [`python-app`](./python-app) | Dockerized Flask Application | Python · Flask |
+| [`python-app`](./python-app) | Dockerized Python Flask Application | Python · Flask |
 | [`nodejs-app`](./nodejs-app) | Dockerized Node.js Weather App | Node.js · Express |
-| _More coming soon_ | Docker Compose, NGINX, DB, Kubernetes | 🚧 |
+| [`tic-tac-toe-nginx`](./tic-tac-toe-nginx) | Static Tic-Tac-Toe Game served via NGINX | HTML · CSS · JS · NGINX |
+| _More coming soon..._ | Docker Compose, Databases, and Kubernetes examples | 🚧 |
 
 ---
 
+## 🎯 What I’ve Learned So Far
+
+✅ Writing Dockerfiles from scratch  
+✅ Building & running images for multiple tech stacks  
+✅ Exposing ports & mapping services  
+✅ Container lifecycle management (`build`, `run`, `logs`, `exec`, `stop`, `rm`)  
+✅ Serving frontend + backend apps in containers  
+✅ Using lightweight base images (Alpine variants)
+
 ---
 
-## 🛠 Common Commands Used
+## 🛠 Common Commands I Use
 
 ```bash
 docker build -t app-name .
@@ -42,44 +51,35 @@ docker rm container-name
 
 ---
 
-## 🎯 Goals
+## 🚀 Roadmap (Next Steps)
 
-- ✅ Learn Docker hands‑on
-- ✅ Containerize real applications
-- 🚀 Build DevOps Portfolio
-- 📦 Try Kubernetes deployments afterward
-- 🤝 Collaborate & learn in public
-
----
-
-## 📢 How to Use This Repo
-
-Clone the repo
-```bash
-git clone https://github.com/H1manshu-Kumar/docker.git
-```
-
-Navigate inside and explore application folders.
+| Goal | Status |
+|------|--------|
+| Dockerize multiple language apps | ✅ Completed |
+| Add Docker Compose (multi-container) | 🔜 Planned |
+| Push images to Docker Hub | 🔜 Planned |
+| Add Database containers (MySQL / Redis) | 🔜 Planned |
+| NGINX Reverse Proxy setup | ✅ Done (Tic-Tac-Toe) |
+| Deploy using Kubernetes (Minikube) | 🔜 Upcoming |
 
 ---
 
-## 💡 Future Enhancements
+## 🧠 Learning Focus
 
-- Add CI/CD pipeline for automated Docker builds
-- Push Docker images to Docker Hub
-- Add Kubernetes deployment & Helm charts
-- Include monitoring via Prometheus + Grafana
-
----
-
-## 👤 Author
-
-**Himanshu Kumar**  
-
-🔗 Connect with me:  
-GitHub: https://github.com/H1manshu-Kumar  
-LinkedIn: https://linkedin.com/in/h1manshu-kumar
+- Hands-on DevOps practice with Docker  
+- Multi-language containerization  
+- Web and API app deployments  
+- Building a personal DevOps portfolio  
 
 ---
 
-⭐ _If you find this useful, don't forget to star the repo!_  
+## 👨‍💻 Author
+
+**Himanshu Kumar** - Building, Containerizing, and Deploying One Step at a Time 🚀
+
+🔗 GitHub: https://github.com/H1manshu-Kumar  
+🔗 LinkedIn: www.linkedin.com/in/h1manshu-kumar
+
+---
+
+⭐ **If you find this repo helpful, please give it a star — it helps visibility and supports learning in public!**
