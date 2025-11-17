@@ -1,24 +1,51 @@
-# STAGE 1 (where we have slim image with linux distribution)
-
+# -----------------------------
+# STAGE 1 - BUILD STAGE
+# Using Python 3.10 slim image to install dependencies.
+# This stage includes a minimal Linux distribution and is used
+# only to build and package Python dependencies.
+# -----------------------------
 FROM python:3.10-slim AS build
 
+# Set working directory where the build process will run
 WORKDIR /workspace
 
+# Copy all project files (app.py, requirements.txt, etc.)
 COPY . .
 
+# Install Python dependencies into a separate folder inside the image.
+# --target installs packages into /workspace/deps
+# These dependencies will later be copied into the final distroless image.
 RUN pip install -r requirements.txt --target=/workspace/deps
 
-# Stage 2 (Just have the code and the code dependencies without any distribution)
 
+# -----------------------------
+# STAGE 2 - RUNTIME STAGE (DISTROLESS)
+# This stage uses a Distroless Python image.
+# It contains:
+#   - No shell
+#   - No package manager
+#   - No OS utilities
+# Only Python runtime + required libs → highly secure & minimal
+# -----------------------------
 FROM gcr.io/distroless/python3-debian12
 
+# Final work directory inside the container
 WORKDIR /app
 
+# Copy installed dependencies from the build stage
 COPY --from=build /workspace/deps /app/deps
+
+# Copy application code from build stage to /app
 COPY --from=build /workspace .
 
+# Configure PYTHONPATH so Python can locate dependencies in /app/deps
 ENV PYTHONPATH="/app/deps"
 
+# Expose the application port (optional, for documentation purposes)
 EXPOSE 5000
 
+# Distroless requires ENTRYPOINT/CMD in exec form.
+# Running the Python application.
 CMD ["app.py"]
+
+
