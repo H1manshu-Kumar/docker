@@ -1,0 +1,22 @@
+#Stage 1
+FROM node:alpine AS build
+
+WORKDIR /workspace
+
+COPY server.js /workspace
+COPY tic-tac-toe-app/ /workspace/tic-tac-toe-app/
+
+#STAGE 2
+FROM gcr.io/distroless/nodejs20-debian12
+
+WORKDIR /app
+
+COPY --from=build /workspace/server.js /app
+COPY --from=build /workspace/tic-tac-toe-app/ /app/tic-tac-toe-app/
+
+EXPOSE 8080
+
+CMD ["server.js"]
+
+
+
