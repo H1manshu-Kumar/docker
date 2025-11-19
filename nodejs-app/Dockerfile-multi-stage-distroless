@@ -1,27 +1,39 @@
+# Distroless multi-stage Dockerfile for Node.js Weather App
+# - Stage 1 (build): Install dependencies and prepare app
+# - Stage 2 (runtime): Use secure, minimal Distroless image to run the app
+
 # STAGE 1 - Build
+# Use lightweight Node.js 20 Alpine image for building the app (includes Node & npm)
 FROM node:20-alpine AS build
 
+# Set working directory where app files will be stored in the build container
 WORKDIR /workspace
 
-# Copy package files first for better caching
+# Copy package.json and package-lock.json first to leverage Docker layer caching
+# This way, dependencies are only re-installed if these files change
 COPY weather-app/package*.json ./
 
-# Install dependencies
+# Install Node.js dependencies defined in package.json
 RUN npm install
 
-# Copy source code
+# Copy the rest of the application source code into the build container
 COPY weather-app/ ./
 
 # STAGE 2 - Runtime (Distroless)
+# Use Distroless Node.js 20 image (Debian 12 based) for a minimal, secure runtime
+# - No shell, no package manager, very small attack surface
 FROM gcr.io/distroless/nodejs20-debian12 AS runtime
 
+# Set working directory for the running application inside the runtime container
 WORKDIR /app
 
-# Copy built application from build stage
+# Copy the fully prepared app (code + node_modules) from the build stage into /app
 COPY --from=build /workspace /app
 
-# Expose port
+# Document that the app listens on port 3000
 EXPOSE 3000
 
-# Run the app
+# Define the startup command for the container
+# Distroless image already has Node as the entrypoint, so we just pass the app entry file
 CMD ["app.js"]
+
