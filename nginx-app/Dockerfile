@@ -1,8 +1,15 @@
-# Use official NGINX image
-FROM nginx:alpine
+# Use official nodejs image
+FROM node:alpine
 
-# Copy game files to NGINX html directory
-COPY tic-tac-toe-app/ /usr/share/nginx/html/
+#Set the work dir
+WORKDIR /app
 
-# Expose port 80
-EXPOSE 80
+# Copy game files and server.js to nodejs container
+COPY server.js /app/
+COPY tic-tac-toe-app/ /app/tic-tac-toe-app/
+
+# Expose port 8080
+EXPOSE 8080
+
+#Serve the app
+CMD ["node","server.js"]
