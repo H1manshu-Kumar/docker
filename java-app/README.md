@@ -1,7 +1,8 @@
-# ☕ Dockerized Java Application
+# ☕ Dockerized Java Application (Multi-Stage + Distroless)
 
-This project demonstrates how to **containerize a simple Java application** using Docker.  
-It’s part of my ongoing **DevOps learning journey**, where I practice Docker with different types of applications.
+This project demonstrates how to **containerize a Java application** using a **multi-stage build with Distroless runtime**, a production-grade approach for secure and minimal Docker images.
+
+This is part of my ongoing **DevOps learning journey**, where I practice Docker with different kinds of applications, including Java, Node.js, Python, and more.
 
 ---
 
@@ -9,70 +10,107 @@ It’s part of my ongoing **DevOps learning journey**, where I practice Docker w
 
 ```
 java-app/
-├── Dockerfile
-├── app/                # Contains Java source code / compiled JAR
+├── Dockerfile                    # Dockerfile
+├── Dockerfile                    # Distroless multi-stage Dockerfile
+├── src/                          # Java source code
+├── pom.xml                       # Maven project config
 └── README.md
 ```
 
 ---
 
-## 🐳 Dockerfile Overview
-
-The Dockerfile defines how to package the Java application into a container.
+## 🐳 Dockerfile (Multi-Stage + Distroless)
 
 ```dockerfile
-# Base image
-FROM openjdk:17-jdk-alpine
+###############
+# STAGE 1     #
+# Build Stage #
+###############
+# Use Maven with Eclipse Temurin JDK 21 on Alpine — lightweight for building Java apps
+FROM maven:3.9-eclipse-temurin-21-alpine AS build
 
-# Working directory inside container
+# Set working directory inside the builder container
+WORKDIR /workspace
+
+# Copy dependency descriptor first for better layer caching
+COPY pom.xml ./
+
+# Copy application source code
+COPY src ./src
+
+# Build the application and create the JAR file
+RUN mvn clean package
+
+###############
+# -  STAGE 2  #
+# Runtime Stage (Distroless) #
+###############
+# Use Distroless Java 21 runtime for maximum security (no shell, minimal OS)
+FROM gcr.io/distroless/java21-debian12
+
+# Application directory in the runtime container
 WORKDIR /app
 
-# Copy application files into container
-COPY src/Main.java /app/Main.java
-```
+# Copy the packaged JAR from the build stage
+COPY --from=build /workspace/target/java-app-1.0.0.jar /app/app.jar
 
-### 🔍 Explanation
-- **Base Image** → Uses lightweight `openjdk:17-jdk-alpine`  
-- **WORKDIR** → Sets `/app` as the working directory  
-- **COPY** → Copies your local Java app files into the container  
+# Expose port for the running application
+EXPOSE 8000
+
+# Run the application using Distroless entrypoint style
+CMD ["app.jar"]
+```
 
 ---
 
-## ⚙️ Build the Image
+## 🔍 Explanation of Multi-Stage Distroless Approach
 
-Run this command from the project root:
+### **Stage 1 → Maven Build**
+✔ Uses `maven:3.9-eclipse-temurin-21-alpine`  
+✔ Compiles source code  
+✔ Produces optimized JAR (`java-app-1.0.0.jar`)  
+✔ Better caching due to separate `pom.xml` copy  
+
+### **Stage 2 → Distroless Java Runtime**
+✔ Based on `gcr.io/distroless/java21-debian12`  
+✔ No shell, no package manager → **highly secure**  
+✔ Extremely lightweight production image  
+✔ Only the required Java runtime is included  
+
+---
+
+## ⚙️ Build the Image (Distroless Multi-Stage)
+
+Run this from the project root:
 
 ```bash
-docker build -t java-app .
+docker build -t java-app:distroless .
 ```
-
-✅ This creates a Docker image named `java-app`.
 
 ---
 
 ## 🚀 Run the Container
 
 ```bash
-docker run -d -p 8000:8000 --name my-java-app java-app:latest
+docker run -d -p 8000:8000 --name my-java-app java-app:distroless
 ```
 
-### To verify it’s running:
+### Verify:
 ```bash
 docker ps
 ```
 
 ---
 
-## 📦 Access Logs or Output
+## 📦 View Logs / Output
 
-If your Java application prints output to console:
 ```bash
 docker logs my-java-app
 ```
 
 ---
 
-## 🧹 Stop and Remove Container
+## 🧹 Stop & Remove the Container
 
 ```bash
 docker stop my-java-app
@@ -83,20 +121,21 @@ docker rm my-java-app
 
 ## 💡 Learning Focus
 
-- Understanding how Docker layers work  
-- Writing a simple Dockerfile for Java  
-- Building and running containers locally  
-- Preparing base for multi-stage builds (coming next)  
+- Understanding multi-stage builds  
+- Using Distroless images for production-grade security  
+- Optimizing Docker image size  
+- Managing Java builds using Maven + Docker  
+- Following real DevOps practices  
 
 ---
 
-## 🧭 Next Step (Planned)
+## 🧭 Next Steps
 
-Next, I’ll extend this by:
-- Creating a **multi-stage Docker build** for optimized Java images  
-- Adding **docker-compose** for multi-container setup (e.g., Java + DB)
+- Add **docker-compose** support  
+- Add CI/CD to build Java images automatically  
+- Push images to Docker Hub / GitHub Container Registry  
 
 ---
 
-**Author:** [Himanshu Kumar](https://github.com/H1manshu-Kumar)  
-**Repository:** [Docker Learning Playground](https://github.com/H1manshu-Kumar/docker)
+**Author:** Himanshu Kumar  
+**Repository:** https://github.com/H1manshu-Kumar/docker
