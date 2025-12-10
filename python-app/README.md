@@ -21,7 +21,7 @@ The Dockerfile defines how to package the Flask application into a container.
 # -----------------------------
 # STAGE 1 - BUILD STAGE
 # Using Python 3.10 slim image to install dependencies.
-# This stage includes a minimal Linux distribution and is used
+# This stage includes a minimal Linux distribution
 # only to build and package Python dependencies.
 # -----------------------------
 FROM python:3.10-slim AS build
