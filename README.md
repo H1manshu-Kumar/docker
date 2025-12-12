@@ -4,7 +4,7 @@
 Welcome to my **Docker Learning Repository** - a hands-on journey exploring containerization with real-world projects.  
 This repo now includes **Distroless + Multi-Stage Dockerfiles** for all applications, making them more secure, lightweight, and production-ready. 🚀
 
-Perfect for learners 👨‍💻 and a portfolio-ready showcase for the world 🌍.
+Perfect for learners 👨‍💻 and a portfolio-ready showcase for the world.
 
 ---
 
