@@ -89,6 +89,20 @@ docker build -t java-app:distroless .
 
 ---
 
+## 📤 Docker image published to Docker Hub
+The production-ready **multi-stage Distroless Java image** has been successfully built and pushed to Docker Hub.
+
+🐳 Docker Hub Image
+
+```bash
+docker push himan5hu/java-app-mini-multistage-distroless
+```
+
+🔗 Docker Hub Repository: 
+
+https://hub.docker.com/repository/docker/himan5hu/java-app-mini-multistage-distroless/
+
+---
 ## 🚀 Run the Container
 
 ```bash
