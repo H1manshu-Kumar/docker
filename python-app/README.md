@@ -85,17 +85,33 @@ CMD ["app.py"]
 - CMD → Runs the app using distroless exec form `(["app.py"])`
 ---
 
-### **Build the image**
+## ⚙️ Build the Image (Distroless Multi-Stage)
 ```bash
 docker build -t python-app:distroless .
 ```
+---
 
-### **Run the container**
+## 📤 Docker image published to Docker Hub
+The production-ready **multi-stage distroless Python app** has been successfully built and pushed to Docker Hub.
+
+🐳 Docker Hub Image
+
+```bash
+docker push himan5hu/python-app-multistage-distroless
+```
+
+🔗 Docker Hub Repository: 
+
+https://hub.docker.com/repository/docker/himan5hu/python-app-multistage-distroless
+
+---
+
+## 🚀 Run the Container
 ```bash
 docker run -p 5000:5000 python-app:distroless
 ```
 
-### **Why Distroless?**
+## Why Distroless?
 - No shell or package manager → extremely small  
 - Lower surface for attacks  
 - Enforces secure `nonroot` execution  
