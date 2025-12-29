@@ -64,13 +64,30 @@ CMD ["server.js"]
 - **CMD** → Launches the app using the production binary/static files.
 ---
 
-### 1. Build the Docker image ⚙️
+## ⚙️ Build the Docker image
 ```bash
 docker build -t tic-tac-toe:latest -f Dockerfile-multi-stage-distroless .
 ```
 ✅ Creates Docker image named `tic-tac-toe`
 
-## 2. Run the Container 🚀
+---
+
+## 📤 Docker image published to Docker Hub
+The production-ready **multistage distroless tic-tac-toe game** has been successfully built and pushed to Docker Hub.
+
+🐳 Docker Hub Image
+
+```bash
+docker push himan5hu/tic-tac-toe-game-multistage-distroless
+```
+
+🔗 Docker Hub Repository: 
+
+https://hub.docker.com/repository/docker/himan5hu/tic-tac-toe-game-multistage-distroless
+
+---
+
+## 🚀 Run the Container 🚀
 
 ```bash
 docker run -d -p 8080:8080 --name tic-tac-toe-container tic-tac-toe
