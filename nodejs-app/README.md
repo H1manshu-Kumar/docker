@@ -98,6 +98,20 @@ CMD ["app.js"]
 ```bash
 docker build -t weather-app-distroless .
 ```
+---
+
+## 📤 Docker image published to Docker Hub
+The production-ready **multi-stage distroless Weather App** has been successfully built and pushed to Docker Hub.
+
+🐳 Docker Hub Image
+
+```bash
+docker push himan5hu/weather-app-nodejs-multistage-distroless
+```
+
+🔗 Docker Hub Repository: 
+
+https://hub.docker.com/repository/docker/himan5hu/weather-app-nodejs-multistage-distroless/
 
 ---
 
