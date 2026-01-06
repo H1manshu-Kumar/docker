@@ -82,8 +82,8 @@ docker rm container-name
 |------|--------|
 | Convert all apps to multi-stage | ✅ Completed |
 | Convert all apps to Distroless | ✅ Completed |
+| Push images to Docker Hub | ✅ Completed |
 | Docker Compose stack | 🔜 Planned |
-| Push images to Docker Hub | 🔜 Planned |
 | Add Database containers (MySQL/Redis) | 🔜 Planned |
 | Kubernetes deployment | 🔜 Upcoming |
 | GitHub Actions CI for builds | 🔜 Upcoming |
@@ -109,4 +109,4 @@ docker rm container-name
 
 ---
 
-⭐ **If you find this repo helpful, please give it a star — learning in public!**
+⭐ **If you find this repo helpful, please give it a star - learning in public!**
