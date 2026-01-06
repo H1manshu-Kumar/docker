@@ -11,6 +11,8 @@ This lab helped me clearly understand **why application data should never be sto
 
 ## 🎯 Objective
 
+- Pull a lightweight Docker image
+- Run an interactive container
 - Create a Docker volume
 - Mount the volume to a container
 - Write data inside the container
@@ -37,6 +39,21 @@ This proves that **Docker volumes live independently of containers**.
 ---
 
 ## 🧪 Hands-On Steps
+### 🔹 Step 0: Pull Lightweight Alpine Image & Run Interactive Container
+
+Before working with volumes, pull a **lightweight Alpine image** and verify Docker is working correctly.
+
+**Pull the image:**
+```bash
+docker pull alpine:latest
+```
+<img width="806" height="97" alt="image" src="https://github.com/user-attachments/assets/b2ed2f80-1c51-4f17-a294-fcf6e023010e" />
+
+**Run an interactive container:**
+```bash
+docker run -it alpine:latest sh
+```
+<img width="1168" height="41" alt="image" src="https://github.com/user-attachments/assets/8f5fea8c-c07f-4be5-a64d-b412f9f61978" />
 
 ### 🔹 Step 1: Create a Docker Volume
 
