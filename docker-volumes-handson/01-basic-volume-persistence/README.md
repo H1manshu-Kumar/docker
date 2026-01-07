@@ -34,7 +34,6 @@ This proves that **Docker volumes live independently of containers**.
 
 - Docker installed
 - Basic understanding of Docker containers
-- Terminal / CLI access
 
 ---
 
