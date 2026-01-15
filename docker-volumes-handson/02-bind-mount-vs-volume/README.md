@@ -39,5 +39,60 @@ As part of my DevOps learning journey, this lab helped me understand **how diffe
 
 ## 🔹 Part 1: Bind Mount (Host-Dependent Storage)
 
-### Step 1: Create a Directory on Host
+```bash
+mkdir bind-data
+```
 
+### Step 2: Run Container Using Bind Mount
+```bash
+docker run -it -v $(pwd)/bind-data:/data alpine:latest sh
+```
+
+**Explanation:**
+- **$(pwd)/bind-data** → Host directory
+- **/data** → Container mount point
+
+### Step 3: Write Data Inside Container
+**Inside the container:**
+
+```bash
+echo "This data lives on the host" > /data/bind.txt
+exit
+```
+  
+### Step 4: Verify Data on Host
+```bash
+cat bind-data/bind.txt
+```
+**✅ Data is directly accessible from the host filesystem.**
+
+## 🔹 Part 2: Docker Volume (Docker-Managed Storage)
+
+### Step 1: Create a Docker Volume
+
+```bash
+docker volume create volume-data
+```
+
+### Step 2: Run container using named volume
+```bash
+docker run -it -v volume-data:/data alpine:latest sh
+```
+
+### Step 3: Write Data Inside Container
+```bash
+echo "This data lives in a Docker volume" > /data/volume.txt
+exit
+```
+
+### Step 4: Verify Volume Data
+```bash
+docker run --rm -v volume-data:/data alpine:latest cat /data/volume.txt
+```
+**✅ Data persists and is managed entirely by Docker.**
+
+## ✍️ Learning Outcome
+**After completing this lab, You will confidently:**
+- Understand the difference between bind mounts and volumes
+- Choose the right storage option for a given scenario
+- Apply production-grade storage best practices
