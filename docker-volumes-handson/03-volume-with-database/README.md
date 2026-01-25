@@ -125,7 +125,6 @@ SHOW DATABASES;
 ```
 **✅ The KYC database is still present.** <br>
 <img width="266" height="260" alt="image" src="https://github.com/user-attachments/assets/21727b7f-a810-4162-987b-ec6885cb3dbd" /> </br>
-</br>
 
 ## Observations
 - Database data persists beyond container lifecycle
