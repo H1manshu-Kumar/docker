@@ -1,4 +1,4 @@
-Purpose:
-Entry point for anyone visiting your GitHub repo.
+### Purpose:
 
-# Will add the content later
+
+* Will add the content later
