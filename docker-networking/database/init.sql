@@ -1,0 +1,14 @@
+CREATE DATABASE taskdb;
+\c taskdb;
+
+CREATE USER taskuser WITH PASSWORD 'taskpass';
+
+CREATE TABLE tasks (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+GRANT ALL PRIVILEGES ON DATABASE taskdb TO taskuser;
+GRANT ALL PRIVILEGES ON TABLE tasks TO taskuser;
+GRANT USAGE, SELECT ON SEQUENCE tasks_id_seq TO taskuser;
