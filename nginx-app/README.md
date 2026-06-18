@@ -113,7 +113,7 @@ docker rm tic-tac-toe-container
 ## Contributing
 1. Fork the repo
 2. Create a branch: `git checkout -b feat/docker-distroless`
-3. Make changes, commit, and open a PR
+3. Make changes, commit, and open a PR.
 
 ---
 ## License & Contact
